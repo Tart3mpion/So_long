@@ -12,9 +12,8 @@ typedef struct s_data
     char c;
     char e;
     int columns;
-    int lines;
+    int row;
 }               t_data;
-
 
 
 int     main(int ac, char **argv);
@@ -23,7 +22,13 @@ int     main(int ac, char **argv);
 char    **get_file(int fd, int lvl);
 int     check_format(char *str, char *ext);
 int     check_infos(char **map, t_data *infos);
+int     check_inputs(char c, char **map);
 int     is_map_valid(char **map, t_data *infos);
+void    print_error(char **map, int error);
+int		is_rectangular(char **map, t_data *infos);
+int     is_closed(char **map);
+int     check_first_column(char **map);
+int     check_first_row(char **map);
 
 /*get_next-line*/
 char	*stock_str(char *buf, char *str);

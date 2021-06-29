@@ -30,18 +30,41 @@ char    **get_file(int fd, int lvl)
 
 int check_infos(char **map, t_data *infos)
 {
-    int i;
-    int j;
+    int l;
+    int c;
 
-    i = 0;
-    j = 0;
-    //infos->p = 1;
-    //if (map[1][3])
-    //printf ("j == %s\n", map[j]);
-    printf ("map == %c\n", map[1][3]);
+    l = 0;
+    while (map[l])
+    {
+    c = 0;
+        while(map[l][c])
+        {
+            check_inputs(map[l][c], map);
+            if (map[l][c] == 'C')
+                infos->c += 1;
+            if (map[l][c] == 'P')
+                infos->p += 1;
+            if (map[l][c] == 'E')
+                infos->e += 1;
+            c++;
+        }
+        l++; 
+    }
+    infos->columns = c;
+     printf("infos->columns == %i\n", infos->columns);
+    infos->row = l;
+    if (infos->c < 1 || infos->p < 1 || infos->e < 1)
+        print_error(map, 1);
     return (0);
 }
-/*is_there_other_char*/
-/*is_there_enough_infos*/
+
+int check_inputs(char c, char **map)
+{
+    if (c != '0' && c != '1' && c != 'E' && c != 'P' && c != 'C')
+        print_error(map, 2);
+    return (0);
+}
+
+/*is_closed*/
 /*is_map_rectangular*/
-/*is_map_closed*/
+

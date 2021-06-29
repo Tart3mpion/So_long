@@ -1,6 +1,6 @@
 NAME = so_long
 
-SRCS = main.c get_file.c get_next_line.c
+SRCS = main.c get_file.c get_next_line.c print_error.c
 
 OBJS =${addprefix srcs/,${SRCS:.c=.o}}
 
