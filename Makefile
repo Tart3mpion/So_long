@@ -1,8 +1,6 @@
-
-
 NAME = so_long
 
-SRCS = 
+SRCS = main.c get_file.c get_next_line.c
 
 OBJS =${addprefix srcs/,${SRCS:.c=.o}}
 
