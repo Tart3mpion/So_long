@@ -26,9 +26,9 @@ int     check_inputs(char c, char **map);
 int     is_map_valid(char **map, t_data *infos);
 void    print_error(char **map, int error);
 int		is_rectangular(char **map, t_data *infos);
-int     is_closed(char **map);
-int     check_first_column(char **map);
-int     check_first_row(char **map);
+int     is_closed(char **map, t_data *infos);
+int     check_column(char **map, t_data *infos);
+int     check_row(char **map, t_data *infos);
 
 /*get_next-line*/
 char	*stock_str(char *buf, char *str);

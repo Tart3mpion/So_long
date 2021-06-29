@@ -8,12 +8,10 @@ int		is_rectangular(char **map, t_data *infos)
 	l = 0;
 	while (map[l])
     {
-    c = 0;
-        while(map[l][c])
-		{
-			c++;
-			printf("c ==>%i\n", c);
-		}
+    	c = 0;
+        while(map[l][c++])
+		printf("infos->columns ==%i\n", infos->columns);
+		printf("c == %i\n", c);
 		if (c != infos->columns)
 			return (1);
         l++; 
@@ -21,16 +19,16 @@ int		is_rectangular(char **map, t_data *infos)
 	return (0);
 }
 
-int		is_closed(char **map)
+int		is_closed(char **map, t_data *infos)
 {
-	if (check_first_row(map))
+	if (check_row(map, infos) != 0)
 		return (1);
-	if (check_first_column(map))
+	if (check_column(map, infos) != 0)
 		return (1);
 	return (0);
 }
 
-int check_first_row(char **map)
+int check_row(char **map, t_data *infos)
 {
 	int l;
 	int c;
@@ -39,37 +37,44 @@ int check_first_row(char **map)
 	c = 0;
 	while (map[l][c])
 	{
-		if (map[l][c] != 1)
+		printf("row ==> %c\n", map[l][c]);
+		if (map[l][c] != '1')
 			return (1);
 		c++;
 	}
-	while (map[l])
+	l = infos->row;
+	c = 0;
+	while (map[l][c])
 	{
-		if (map[l][c] != 1)/*last_*/
+		printf("lastrow ==>%c", map[l][c]);
+		if (map[l][c] != '1')/*last_*/
 			return (1);
-		l++;
+		c++;
 	}
 	return (0);
 }
 
-int check_first_column(char **map)
+int check_column(char **map, t_data *infos)
 {
 	int l;
 	int c;
 
 	l = 0;
 	c = 0;
-	while (map[l])
+	while (l < (infos->row - 1))
 	{
-		if (map[l][c] != 1)
+		if (map[l][c] != '1')
+		printf("column ==>%c", map[l][c]);
 			return (1);
 		l++;
 	}
-	while (map[l][c])
+	c = infos->columns;
+	while (l < (infos->row - 1))
 	{
-		if (map[l][c] != 1)/*last_row*/
+		if (map[l][c] != '1')/*last_row*/
+		printf("lastcolumn ==>%c", map[l][c]);
 			return (1);
-		c++;
+		l++;
 	}
 	return (0);
 }
@@ -81,6 +86,8 @@ void print_error(char **map, int error)
 		printf("Error\nmissing infos");
 	else if (error == 2)
 		printf("Error\nwrong character");
+	else
+		printf("Error\nmap is invalid!");
 	free(map);
 	exit(1);
 }

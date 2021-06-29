@@ -18,6 +18,8 @@ int main(int ac, char **argv)
         printf("\n%d - %s\n", i, map[i]);
     }
    is_map_valid(map, &infos);
+   close(fd);
+   free(map);
     
     /*open window*/
     /*draw minimap*/
@@ -31,7 +33,8 @@ int main(int ac, char **argv)
 int is_map_valid(char **map, t_data *infos)
 {
     check_infos(map, infos);
-    if (is_rectangular(map, infos) || is_closed(map))
+    printf("is_closed(map, infos) %i\n", is_closed(map, infos));
+    if (is_rectangular(map, infos) || is_closed(map, infos))
         print_error(map, 3);
     return (0);
 }
