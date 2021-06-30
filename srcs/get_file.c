@@ -50,10 +50,8 @@ int check_infos(char **map, t_data *infos)
         }
         l++; 
     }
-    infos->columns = c + 1;
-    //printf("infos->columns ==%i\n", infos->columns);
+    infos->columns = c;
     infos->row = l;
-    //printf("infos->row ==%i\n", infos->row);
     if (infos->c < 1 || infos->p < 1 || infos->e < 1)
         print_error(map, 1);
     return (0);
@@ -65,7 +63,3 @@ int check_inputs(char c, char **map)
         print_error(map, 2);
     return (0);
 }
-
-/*is_closed*/
-/*is_map_rectangular*/
-
