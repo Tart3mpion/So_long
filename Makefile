@@ -1,35 +1,31 @@
 NAME = so_long
 
-SRCS = main.c get_file.c get_next_line.c print_error.c
+INCLUDES = includes
+
+
+SRCS = get_file.c get_next_line.c main.c draw_rectangle.c print_error.c \
+
 
 OBJS =${addprefix srcs/,${SRCS:.c=.o}}
 
-INCLUDES = includes
+CC = clang -g $(FLAGS)
 
-CC = clang
+LIBS = ./libft
 
-CFLAGS = -Wall -Werror -Wextra -g3
+FLAGS = -I. -I$(INCLUDES) -Wall -Werror -Wextra
 
-RM = rm -rf
+all: $(NAME)
 
-LIBS = libft/libft.a
-
-.c.o:
-		${CC} ${CFLAGS} -I${INCLUDES} -c $< -o ${<:.c=.o}
-
-all:	${NAME}
-
-$(NAME):	${OBJS}
-		make -C libft
-		${CC} ${CFLAGS} -L libft -o ${NAME} ${OBJS} ${LIBS}
+$(NAME): $(OBJS) $(INCLUDES)
+	make -C $(LIBS)
+	make -C mlx_linux
+	$(CC) $(OBJS) -L$(LIBS) -lft -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -o $(NAME)
 
 clean:
 		${RM} ${OBJS}
 		make clean -C libft
 
-fclean:	clean
-		${RM} ${NAME} ${LIBS}
+fclean: clean
+	rm $(NAME)
 
-re: fclean all
-
-.PHONY:	all clean fclean re
+re : fclean all

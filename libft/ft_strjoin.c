@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 18:43:09 by ldes-cou          #+#    #+#             */
-/*   Updated: 2020/12/03 10:21:51 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/07/01 14:10:42 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,15 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	str = (char *)malloc(sizeof(*s1) * i);
 	if (!str)
 		return (NULL);
-	i = -1;
+	i = 0;
 	j = 0;
 	if (s1[i])
 	{
-		while (s1[++i])
+		while (s1[i])
+		{
 			str[i] = s1[i];
+			i++;
+		}
 	}
 	if (s2[j])
 	{

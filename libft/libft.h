@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou <ldes-cou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:01:48 by ldes-cou          #+#    #+#             */
-/*   Updated: 2020/12/03 17:30:21 by ldes-cou         ###   ########.fr       */
+/*   Updated: 2021/07/01 12:41:19 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ char				*ft_strrchr(const char *s, int c);
 char				*ft_strchr(const char *s, int c);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
-char				*ft_substr(char const *s, unsigned int start, size_t len);
+char				*ft_substr(char *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s1, char const *s2);
 char				*ft_itoa(int n);
-char				**ft_split(char const *s, char c);
+char				**ft_split(char *s, char c);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char *s, int fd);
