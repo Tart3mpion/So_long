@@ -1,58 +1,75 @@
 #include "so_long.h"
 
-int draw_rectangle(t_img *img)
+int	init_map(t_data *d)
 {
-	void	*mlx;
-    void	*mlx_win;
-    int     width;
-    int     heigth;
+	memset(&d->img, 0, sizeof(d->img));
+	d->img.heigth = d->row * SIZE;
+	d->img.width = d->columns * SIZE;
+	d->mlx = mlx_init();
+	d->mlx_win = mlx_new_window(d->mlx, d->img.width, d->img.heigth, "Heloooooooo");
+	d->img.img = mlx_new_image(d->mlx, d->img.width, d->img.heigth);
+	d->img.addr = mlx_get_data_addr(d->img.img, &d->img.bits_per_pixel, &d->img.line_length,
+		&d->img.endian);
+	return(0);
+}
+void	draw_map(t_data *d)
+{
+	int c;
+	int l;
 
-    width = ((HEIGHT / 3) * 2);
-    heigth = ((HEIGHT / 3) * 2); 
-    mlx = mlx_init();
-    mlx_win = mlx_new_window(mlx, WIDTH, HEIGHT, "Hello world!");
-    img->img = mlx_new_image(mlx, WIDTH, HEIGHT);
-    img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length,
-	    &img->endian);
-    img->c = HEIGHT / 3;
-    img->l = HEIGHT / 3;
-    while (img->c < width)
-    {
-        my_mlx_pixel_put(img, img->c, img->l, 0x00FFFF000);
-        img->c++;
-    }
-    while(img->l < heigth)
-    {
-        my_mlx_pixel_put(img, img->c, img->l, 0x00FFFF00);
-        img->l++;
-    }
-    while (img->c > HEIGHT / 3)
-    {
-        my_mlx_pixel_put(img, img->c, img->l, 0x00FFFF00);
-        img->c--;
-    }
-    while(img->l > HEIGHT / 3)
-    {
-        my_mlx_pixel_put(img, img->c, img->l, 0x00FFFF00);
-        img->l--;
-    }
-    while(img->l < heigth)
-    {
-        my_mlx_pixel_put(img, img->c, img->l, 0x000000FF);
-        img->l++;
-        img->c++;
-    }
-    img->c = img->c = HEIGHT / 3;
-    while(img->c < heigth)
-    {
-        my_mlx_pixel_put(img, img->c, img->l, 0x000000FF);
-        img->l--;
-        img->c++;
-    }
+	l = 0;
+	init_map(d);
+	while (d->map[l])
+	{
+		d->img.c = 0;
+		c = 0;
+		while (d->map[l][c])
+		{
+			printf("c ==> %i\n", c);
+			printf("d->img.c==> %i\n", d->img.c);
+			if (d->map[l][c] == '1')
+			{
+				draw_square(d, PINK);
+				//printf("d->map[l][c] ==> %c\n", d->map[l][c]);
+			}
+			else if (d->map[l][c] == '0')
+				draw_square(d, GREEN);
+			else if (d->map[l][c] == 'P')
+				draw_square(d, BLUE);
+			else if (d->map[l][c] == 'C')
+				draw_square(d, YELLOW);
+			else
+				draw_square(d, ORANGE);
+			c++;
+			d->img.l = l * SIZE;
+		}
+		l++;
+		d->img.l = SIZE * l;
+		printf("img.l ==> %i\n", d->img.l);
+		
+	}
+	mlx_put_image_to_window(d->mlx, d->mlx_win, d->img.img, 0, 0);
+	mlx_loop(d->mlx);
+}
+int draw_square(t_data *d, int color)
+{
+	
+	int c;
+	int	l;
 
-    mlx_put_image_to_window(mlx, mlx_win, img->img, 0, 0);
-    mlx_loop(mlx);
-    return(0);
+	l = d->img.l;
+	c = d->img.c;
+	while(d->img.l < SIZE + l)
+	{
+		d->img.c = c;
+		while (d->img.c < SIZE + c)
+		{
+			my_mlx_pixel_put(&d->img, d->img.c, d->img.l, color);
+			d->img.c++;
+		}
+		d->img.l++;
+	}
+	return(0);
 }
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color)

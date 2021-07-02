@@ -1,15 +1,15 @@
 #include "so_long.h"
 
-int		is_rectangular(char **map, t_data *infos)
+int		is_rectangular(t_data *infos)
 {
 	int c;
 	int l;
 
 	l = 0;
-	while (map[l])
+	while (infos->map[l])
     {
     	c = 0;
-        while(map[l][c])
+        while(infos->map[l][c])
 		{
 			c++;
 		}
@@ -20,49 +20,49 @@ int		is_rectangular(char **map, t_data *infos)
 	return (0);
 }
 
-int		is_closed(char **map, t_data *infos)
+int		is_closed(t_data *infos)
 {
-	if (check_row(map, infos))
+	if (check_row(infos))
 		return (1);
-	if (check_column(map, infos))
+	if (check_column(infos))
 		return (1);
 	return (0);
 }
 
-int check_row(char **map, t_data *infos)
+int check_row(t_data *infos)
 {
 	int l;
 	int c;
 
 	l = 0;
 	c = 0;
-	while (map[l][c])
+	while (infos->map[l][c])
 	{
-		if (map[l][c] != '1')
+		if (infos->map[l][c] != '1')
 			return (1);
 		c++;
 	}
 	l = infos->row - 1;
 	c = 0;
-	while (map[l][c])
+	while (infos->map[l][c])
 	{	
-		if (map[l][c] != '1')
+		if (infos->map[l][c] != '1')
 			return (1);
 		c++;
 	}
 	return (0);
 }
 
-int check_column(char **map, t_data *infos)
+int check_column(t_data *infos)
 {
 	int l;
 	int c;
 
 	l = 0;
 	c = 0;
-	while (map[l])
+	while (infos->map[l])
 	{
-		if (map[l][c] != '1')	
+		if (infos->map[l][c] != '1')	
 			return (1);
 		l++;
 	}
@@ -70,14 +70,14 @@ int check_column(char **map, t_data *infos)
 	l = 0;
 	while (l < infos->row)
 	{
-		if (map[l][c] != '1')
+		if (infos->map[l][c] != '1')
 			return (1);
 		l++;
 	}
 	return (0);
 }
 
-void print_error(char **map, int error)
+void print_error(t_data *infos, int error)
 {
 	if (error == 1)
 		printf("Error\nmissing infos");
@@ -85,6 +85,7 @@ void print_error(char **map, int error)
 		printf("Error\nwrong character");
 	else
 		printf("Error\nmap is invalid!");
-	free(map);
+	free(infos->map);
+	free(infos);
 	exit(1);
 }
