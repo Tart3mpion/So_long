@@ -19,9 +19,9 @@ int main(int ac, char **argv)
     init_image(&infos);
     close(fd);
     free(infos.map);//faire une fonction qui free tout
-    
-    /*open window*/
-    /*draw minimap*/
+    /*faire une fonction qui pqrse les textures en fonctions de la carte*/
+    /*draw floor && wall*/
+    /*draw_player*/
     /*play*/
     /*add sprites*/
     /*configure exit*/

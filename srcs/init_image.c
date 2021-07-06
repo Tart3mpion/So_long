@@ -10,7 +10,7 @@ int	init_image(t_data *d)
 	d->img.img = mlx_new_image(d->mlx, d->img.width, d->img.heigth);
 	d->img.addr = mlx_get_data_addr(d->img.img, &d->img.bpp, &d->img.line_length,
 		&d->img.endian);
-	init_wall(d);
+	init_text(d);
 	draw_map(d);
 	mlx_loop_hook(d->mlx_win, mlx_put_image_to_window, d);
 	mlx_hook(d->mlx_win, KeyPress, KeyPressMask, &keypress, &d);

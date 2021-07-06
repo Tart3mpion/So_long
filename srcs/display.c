@@ -48,7 +48,7 @@ void	background(t_img *img, int color)
 	}
 }
 
-int draw_square(t_data *d, int color)
+int draw_square(t_data *d, int color) //faire une fonction draw_text
 {
 	
 	int c;
@@ -68,6 +68,7 @@ int draw_square(t_data *d, int color)
 	}
 	return(0);
 }
+
 
 void	img_pix_put(t_img *img, int x, int y, int color)
 {
