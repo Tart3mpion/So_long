@@ -1,17 +1,6 @@
 #include "so_long.h"
 
-int	init_map(t_data *d)
-{
-	memset(&d->img, 0, sizeof(d->img));
-	d->img.heigth = d->row * SIZE;
-	d->img.width = d->columns * SIZE;
-	d->mlx = mlx_init();
-	d->mlx_win = mlx_new_window(d->mlx, d->img.width, d->img.heigth, "Heloooooooo");
-	d->img.img = mlx_new_image(d->mlx, d->img.width, d->img.heigth);
-	d->img.addr = mlx_get_data_addr(d->img.img, &d->img.bpp, &d->img.line_length,
-		&d->img.endian);
-	return(0);
-}
+
 void	draw_map(t_data *d)
 {
 	int c;
@@ -19,15 +8,13 @@ void	draw_map(t_data *d)
 
 	l = 0;
 	init_map(d);
-	render_background(&d->img, GREEN);
+	background(&d->img, GREEN);
 	while (d->map[l])
 	{
 		d->img.c = 0;
 		c = 0;
 		while (d->map[l][c])
 		{
-			printf("c ==> %i\n", c);
-			printf("d->img.c==> %i\n", d->img.c);
 			if (d->map[l][c] == '1')
 				draw_square(d, PINK);	//printf("d->map[l][c] ==> %c\n", d->map[l][c]);
 			else if (d->map[l][c] == '0')
@@ -43,17 +30,22 @@ void	draw_map(t_data *d)
 		}
 		l++;
 		d->img.l = SIZE * l;
-		printf("img.l ==> %i\n", d->img.l);
-		
 	}
+	render_frame(d);
+	exit_clean(d);
+}
+void render_frame(t_data *data)
+{
 	mlx_put_image_to_window(d->mlx, d->mlx_win, d->img.img, 0, 0);
-	//gimlx_loop_hook(d->mlx, &mlx_put_image_to_window, &d);
+	mlx_loop_hook(d->mlx_win, &mlx_put_image_to_window, &d);
+	mlx_hook(d->mlx_win, KeyPress, KeyPressMask, &keypress, &d);
+	mlx_hook(d->mlx_win, KeyRelease, KeyReleaseMask, &keyrelease, &d);
 	mlx_loop(d->mlx);
 }
+
 void	render_background(t_img *img, int color)
 
 {
-
 	int	i;
 	int	j;
 	i = 0;
@@ -65,6 +57,7 @@ void	render_background(t_img *img, int color)
 		++i;
 	}
 }
+
 int draw_square(t_data *d, int color)
 {
 	
@@ -112,3 +105,5 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 		i -= 8;
 	}
 }
+
+
