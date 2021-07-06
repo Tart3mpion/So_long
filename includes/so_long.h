@@ -20,8 +20,9 @@
 typedef struct	s_img
 {
 	void	*img;
+	char	*data;
 	char	*addr;
-	int		bits_per_pixel;
+	int		bpp;
 	int		line_length;
 	int		endian;
 	int		c;
@@ -67,7 +68,9 @@ int		get_next_line(int fd, char **line);
 
 /*display*/
 int		draw_square(t_data *data, int color);
+void	render_background(t_img *img, int color);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
+void	img_pix_put(t_img *img, int x, int y, int color);
 int		init_map(t_data *d);
 void	draw_map(t_data *data);
 

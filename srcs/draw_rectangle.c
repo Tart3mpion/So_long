@@ -8,7 +8,7 @@ int	init_map(t_data *d)
 	d->mlx = mlx_init();
 	d->mlx_win = mlx_new_window(d->mlx, d->img.width, d->img.heigth, "Heloooooooo");
 	d->img.img = mlx_new_image(d->mlx, d->img.width, d->img.heigth);
-	d->img.addr = mlx_get_data_addr(d->img.img, &d->img.bits_per_pixel, &d->img.line_length,
+	d->img.addr = mlx_get_data_addr(d->img.img, &d->img.bpp, &d->img.line_length,
 		&d->img.endian);
 	return(0);
 }
@@ -19,6 +19,7 @@ void	draw_map(t_data *d)
 
 	l = 0;
 	init_map(d);
+	render_background(&d->img, GREEN);
 	while (d->map[l])
 	{
 		d->img.c = 0;
@@ -28,12 +29,9 @@ void	draw_map(t_data *d)
 			printf("c ==> %i\n", c);
 			printf("d->img.c==> %i\n", d->img.c);
 			if (d->map[l][c] == '1')
-			{
-				draw_square(d, PINK);
-				//printf("d->map[l][c] ==> %c\n", d->map[l][c]);
-			}
+				draw_square(d, PINK);	//printf("d->map[l][c] ==> %c\n", d->map[l][c]);
 			else if (d->map[l][c] == '0')
-				draw_square(d, GREEN);
+			 	draw_square(d, GREEN);
 			else if (d->map[l][c] == 'P')
 				draw_square(d, BLUE);
 			else if (d->map[l][c] == 'C')
@@ -49,7 +47,23 @@ void	draw_map(t_data *d)
 		
 	}
 	mlx_put_image_to_window(d->mlx, d->mlx_win, d->img.img, 0, 0);
+	//gimlx_loop_hook(d->mlx, &mlx_put_image_to_window, &d);
 	mlx_loop(d->mlx);
+}
+void	render_background(t_img *img, int color)
+
+{
+
+	int	i;
+	int	j;
+	i = 0;
+	while (i < img->heigth)
+	{
+		j = 0;
+		while (j < img->width)
+			img_pix_put(img, j++, i, color);
+		++i;
+	}
 }
 int draw_square(t_data *d, int color)
 {
@@ -64,7 +78,7 @@ int draw_square(t_data *d, int color)
 		d->img.c = c;
 		while (d->img.c < SIZE + c)
 		{
-			my_mlx_pixel_put(&d->img, d->img.c, d->img.l, color);
+			img_pix_put(&d->img, d->img.c, d->img.l, color);
 			d->img.c++;
 		}
 		d->img.l++;
@@ -76,6 +90,25 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	dst = img->addr + (y * img->line_length + x * (img->bpp / 8));
 	*(unsigned int*)dst = color;
+}
+
+void	img_pix_put(t_img *img, int x, int y, int color)
+{
+	char    *pixel;
+	int		i;
+
+	i = img->bpp - 8;
+    pixel = img->addr + (y * img->line_length + x * (img->bpp / 8));
+	while (i >= 0)
+	{
+		if (img->endian != 0)
+
+			*pixel++ = (color >> i) & 0xFF;
+		else
+
+			*pixel++ = (color >> (img->bpp - 8 - i)) & 0xFF;
+		i -= 8;
+	}
 }
