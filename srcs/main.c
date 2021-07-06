@@ -16,7 +16,7 @@ int main(int ac, char **argv)
         printf("\n%d - %s\n", i, infos.map[i]);
     }
     is_map_valid(&infos);
-    draw_map(&infos);
+    init_image(&infos);
     close(fd);
     free(infos.map);//faire une fonction qui free tout
     

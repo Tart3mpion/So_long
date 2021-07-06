@@ -1,13 +1,11 @@
 #include "so_long.h"
 
-
 void	draw_map(t_data *d)
 {
 	int c;
 	int l;
 
 	l = 0;
-	init_map(d);
 	background(&d->img, GREEN);
 	while (d->map[l])
 	{
@@ -31,20 +29,12 @@ void	draw_map(t_data *d)
 		l++;
 		d->img.l = SIZE * l;
 	}
-	render_frame(d);
-	exit_clean(d);
-}
-void render_frame(t_data *data)
-{
 	mlx_put_image_to_window(d->mlx, d->mlx_win, d->img.img, 0, 0);
-	mlx_loop_hook(d->mlx_win, &mlx_put_image_to_window, &d);
-	mlx_hook(d->mlx_win, KeyPress, KeyPressMask, &keypress, &d);
-	mlx_hook(d->mlx_win, KeyRelease, KeyReleaseMask, &keyrelease, &d);
 	mlx_loop(d->mlx);
 }
 
-void	render_background(t_img *img, int color)
 
+void	background(t_img *img, int color)
 {
 	int	i;
 	int	j;
@@ -77,14 +67,6 @@ int draw_square(t_data *d, int color)
 		d->img.l++;
 	}
 	return(0);
-}
-
-void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = img->addr + (y * img->line_length + x * (img->bpp / 8));
-	*(unsigned int*)dst = color;
 }
 
 void	img_pix_put(t_img *img, int x, int y, int color)
