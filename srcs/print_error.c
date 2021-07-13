@@ -86,6 +86,6 @@ void print_error(t_data *infos, int error)
 	else
 		printf("Error\nmap is invalid!");
 	free(infos->map);
-	free(infos);
+	//free(infos);
 	exit(1);
 }

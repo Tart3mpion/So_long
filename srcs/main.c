@@ -5,16 +5,14 @@ int main(int ac, char **argv)
     int fd;
     t_data infos;
 
-
     if ((ac < 2) || (check_format(argv[1], ".ber")))
         printf("Error\nyou need to add a map with a .ber extension");
     fd = open(argv[1], O_RDONLY);
     memset(&infos, 0, sizeof(t_data));
+    printf("infos->columns == %d\n", infos.columns);
+	printf("infos->row == %d\n", infos.row);
     get_file(&infos, fd, 0);
-    for (int i = 0; infos.map[i]; i++)
-    {
-        printf("\n%d - %s\n", i, infos.map[i]);
-    }
+    print_map(&infos);
     is_map_valid(&infos);
     init_image(&infos);
     close(fd);
@@ -25,7 +23,6 @@ int main(int ac, char **argv)
     /*play*/
     /*add sprites*/
     /*configure exit*/
-
     return (0);
 }
 

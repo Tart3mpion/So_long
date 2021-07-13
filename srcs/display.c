@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-void	draw_map(t_data *d)
+int	draw_map(t_data *d)
 {
 	int c;
 	int l;
@@ -16,7 +16,7 @@ void	draw_map(t_data *d)
 			if (d->map[l][c] == '1')
 				draw_square(d, PINK);	//printf("d->map[l][c] ==> %c\n", d->map[l][c]);
 			else if (d->map[l][c] == '0')
-			 	draw_square(d, GREEN);
+				draw_square(d, GREEN);
 			else if (d->map[l][c] == 'P')
 				draw_square(d, BLUE);
 			else if (d->map[l][c] == 'C')
@@ -30,7 +30,7 @@ void	draw_map(t_data *d)
 		d->img.l = SIZE * l;
 	}
 	mlx_put_image_to_window(d->mlx, d->mlx_win, d->img.img, 0, 0);
-	mlx_loop(d->mlx);
+	return(1);
 }
 
 

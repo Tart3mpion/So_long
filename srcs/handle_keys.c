@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-int	keypress(int keysym, t_data *d)
+int	ft_keypress(int keysym, t_data *d)
 {
 	if (keysym == XK_Escape)
 		mlx_destroy_window(d->mlx, d->mlx_win);
@@ -8,9 +8,16 @@ int	keypress(int keysym, t_data *d)
 	return (0);
 }
 
-int	keyrelease(int keysym, void *data)
+int	ft_keyrelease(int keysym, void *data)
 {
 	printf("Keyrelease: %d\n", keysym);
 	printf("data: %p\n", data);
 	return (0);
+}
+
+int keyhook(int keycode, t_data *d)
+{
+	d->step = 1;
+	printf("hello from keycode %d\n", keycode);
+	return(1);
 }
