@@ -14,6 +14,7 @@
 #define BLUE 0xFF0E203E
 #define	ORANGE 0x55E1703E
 #define	YELLOW	0xFFFCAC00
+#define	BLACK 0xFF000000
 #define	SIZE 40
 
 

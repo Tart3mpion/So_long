@@ -12,7 +12,7 @@ void	find_player(t_data *d)
 		}
 		d->x++;
 	}
-	printf("d->map[d->x][d->y] == %c\n", d->map[d->x][d->y]);
+	//printf("d->map[d->x][d->y] == %c\n", d->map[d->x][d->y]);
 }
 int check_position(t_data *d, int x, int y)
 {
@@ -34,8 +34,10 @@ int check_position(t_data *d, int x, int y)
 		else
 		{
 			d->map[x][y] = 'P';
-			exit_clean(d);
+			background(&d->img, BLACK);
+			//exit_clean(d);
 			printf("GG you ate it all");
+			exit(0);
 		}
 	}
 	else
@@ -44,11 +46,12 @@ int check_position(t_data *d, int x, int y)
 }
 void move_forward(t_data *d)
 {
-	puts("1");
+	//puts("1");
 	if (check_position(d, d->x - 1, d->y))
 			return;
 	d->map[d->x][d->y] = '0';
 	d->x -= 1;
+	d->step += 1;
 }
 
 void move_backward(t_data *d)
@@ -57,6 +60,7 @@ void move_backward(t_data *d)
 		return;
 	d->map[d->x][d->y] = '0';
 	d->x += 1;
+	d->step += 1;
 }
 
 void move_left(t_data *d)
@@ -65,6 +69,7 @@ void move_left(t_data *d)
 		return;
 	d->map[d->x][d->y] = '0';
 	d->y -= 1;
+	d->step += 1;
 }
 
 void move_right(t_data *d)
@@ -73,4 +78,5 @@ void move_right(t_data *d)
 		return;
 	d->map[d->x][d->y] = '0';
 	d->y += 1;
+	d->step += 1;
 }

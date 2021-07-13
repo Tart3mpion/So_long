@@ -12,7 +12,9 @@ int	ft_keypress(int keysym, t_data *d)
 		move_left(d);
 	if (keysym == D)
 		move_right(d);
-	printf("Keypress: %d\n", keysym);
+	//printf("Keypress: %d\n", keysym);
+	//fga .
+	ft_putchar_fd(d->step, 1);
 	draw_map(d);
 	return (0);
 }
