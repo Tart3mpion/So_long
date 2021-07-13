@@ -6,7 +6,10 @@ int	draw_map(t_data *d)
 	int l;
 
 	l = 0;
-	background(&d->img, GREEN);
+	//background(&d->img, GREEN);
+	find_player(d);
+	printf("d->map[d->x][d->y] == %c\n", d->map[d->x][d->y]);
+	printf("coordonnees player ==> %i-%i\n", d->x, d->y);
 	while (d->map[l])
 	{
 		d->img.c = 0;

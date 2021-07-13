@@ -15,8 +15,11 @@ int main(int ac, char **argv)
     print_map(&infos);
     is_map_valid(&infos);
     init_image(&infos);
+    printf("player coordonnees == %d%d\n", infos.x, infos.y);
     close(fd);
-    free(infos.map);//faire une fonction qui free tout
+    free(infos.map);
+    printf("you made %d steps", infos.step);
+    //faire une fonction qui free tout
     /*faire une fonction qui pqrse les textures en fonctions de la carte*/
     /*draw floor && wall*/
     /*draw_player*/

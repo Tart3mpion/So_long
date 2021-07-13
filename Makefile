@@ -4,7 +4,7 @@ INCLUDES = includes
 
 
 SRCS = get_file.c get_next_line.c main.c display.c print_error.c \
-handle_keys.c exit_clean.c init_image.c \
+handle_keys.c exit_clean.c init_image.c movement.c \
 
 
 OBJS =${addprefix srcs/,${SRCS:.c=.o}}
@@ -13,7 +13,7 @@ CC = clang -g $(FLAGS)
 
 LIBS = ./libft
 
-FLAGS = -I. -I$(INCLUDES) -Wall -Werror -Wextra 
+FLAGS = -I. -I$(INCLUDES) -Wall -Werror -Wextra -fsanitize=address
 
 all: $(NAME)
 

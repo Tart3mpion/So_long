@@ -7,7 +7,7 @@ int	exit_clean(t_data *d)
 	mlx_destroy_window(d->mlx, d->mlx_win);
 	mlx_destroy_display(d->mlx);
 	//free(d->mlx);
-	free(d);
-	exit (0);
+	//free(d);
+	//exit(1);
 	return(1);
 }

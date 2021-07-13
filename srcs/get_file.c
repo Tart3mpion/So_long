@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 13:57:13 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/07/13 11:40:46 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/07/13 15:33:53 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,6 @@ int check_infos(t_data *infos)
 	int c;
 
 	l = 0;
-	c = 0;
-	//puts("che");
-	//printf("infos->map == %s\n", infos->map[l]);
 	while (infos->map[l])
 	{
 	c = 0;
@@ -71,15 +68,8 @@ int check_infos(t_data *infos)
 		}
 		l++; 
 	}
-	// printf("l == %d\n", l);
-	// printf("c == %d\n", c);
-	// printf("infos->c == %d\n", infos->c);
-	// printf("infos->p == %d\n", infos->p);
-	// printf("infos->e == %d\n", infos->e);
 	infos->columns = c;
 	infos->row = l;
-	printf("infos->columns == %d\n", infos->columns);
-	printf("infos->row == %d\n", infos->row);
 	if (infos->c < 1 || infos->p < 1 || infos->e < 1)
 		print_error(infos, 1);
 	return (0);

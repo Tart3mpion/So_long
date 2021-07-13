@@ -20,8 +20,8 @@
 /*KEYS*/
 #define W 119
 #define S 115
-#define A 65361
-#define D 65363
+#define A 97
+#define D 100
 #define ESC 65307
 
 /*TEXTURES*/
@@ -64,6 +64,8 @@ typedef struct	s_data
 	char	**map;
 	int		columns;
 	int		row;
+	int		x;
+	int		y;
 	void	*mlx;
 	void	*mlx_win;
 	int		step;
@@ -120,6 +122,15 @@ void	img_pix_put(t_img *img, int x, int y, int color);
 int	draw_map(t_data *data);
 void	render_frame(t_data *data);
 void	so_long_loop(t_data *d);
+
+/*actions*/
+void	find_player(t_data *d);
+void	move_player(t_data *d);
+int		check_position(t_data *d, int x, int y);
+void	move_right(t_data *d);
+void	move_left(t_data *d);
+void	move_backward(t_data *d);
+void	move_forward(t_data *d);
 
 /*hooks*/
 int	ft_keyrelease(int keysym, void *data);
