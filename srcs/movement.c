@@ -18,8 +18,9 @@ int check_position(t_data *d, int x, int y)
 {
 	if (d->map[x][y] == 'C')
 	{
-		d->map[x][y] = 'P';
+		d->map[x][y] = '0';
 		d->c--;
+		return (2);
 	}
 	if (d->map[x][y] == '1')
 		return (1);
@@ -28,9 +29,14 @@ int check_position(t_data *d, int x, int y)
 		if (d->c > 0)
 		{
 			printf("There are still collectibles to eat !!");
+			return(1);
 		}
 		else
+		{
+			d->map[x][y] = 'P';
+			exit_clean(d);
 			printf("GG you ate it all");
+		}
 	}
 	else
 		d->map[x][y] ='P';
