@@ -6,7 +6,7 @@ int	draw_map(t_data *d)
 	int l;
 
 	l = 0;
-	//background(&d->img, GREEN);
+	background(&d->img, GREEN);
 	find_player(d);
 	// printf("d->map[d->x][d->y] == %c\n", d->map[d->x][d->y]);
 	// printf("coordonnees player ==> %i-%i\n", d->x, d->y);
@@ -53,7 +53,6 @@ void	background(t_img *img, int color)
 
 int draw_square(t_data *d, int color) //faire une fonction draw_text
 {
-	
 	int c;
 	int	l;
 

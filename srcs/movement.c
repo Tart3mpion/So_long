@@ -18,7 +18,7 @@ int check_position(t_data *d, int x, int y)
 {
 	if (d->map[x][y] == 'C')
 	{
-		d->map[x][y] = '0';
+		d->map[x][y] = 'P';
 		d->c--;
 		return (2);
 	}
@@ -48,7 +48,8 @@ void move_forward(t_data *d)
 {
 	//puts("1");
 	if (check_position(d, d->x - 1, d->y))
-			return;
+		return;
+	//if (check_position(d, d->x - 1, d->y) == 2)
 	d->map[d->x][d->y] = '0';
 	d->x -= 1;
 	d->step += 1;

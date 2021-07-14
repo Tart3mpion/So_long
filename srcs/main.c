@@ -15,8 +15,8 @@ int main(int ac, char **argv)
     print_map(&infos);
     is_map_valid(&infos);
     init_image(&infos);
-    printf("player coordonnees == %d%d\n", infos.x, infos.y);
-    printf("you made %d steps", infos.step);
+    //printf("player coordonnees == %d%d\n", infos.x, infos.y);
+    //printf("you made %d steps", infos.step);
     close(fd);
     free(infos.map);
     

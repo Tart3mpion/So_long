@@ -73,6 +73,7 @@ typedef struct	s_data
 	//int		width;
 	//t_rgb   rgb;
 	t_img   img;
+	t_txt	txt;
 	t_txt	wall;
 	t_txt	player;
 	t_txt	coin;

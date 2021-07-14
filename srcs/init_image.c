@@ -28,6 +28,7 @@ int	init_image(t_data *d)
 
 void init_text(t_data *d)
 {
+	memset(&d->txt, 0, sizeof(t_txt));
 	init_wall(d);
 	init_player(d);
 	init_coin(d);
