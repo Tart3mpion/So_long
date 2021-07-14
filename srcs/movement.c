@@ -17,31 +17,26 @@ void	find_player(t_data *d)
 int check_position(t_data *d, int x, int y)
 {
 	if (d->map[x][y] == 'C')
-	{
-		d->map[x][y] = 'P';
 		d->c--;
-		return (2);
-	}
 	if (d->map[x][y] == '1')
 		return (1);
 	if (d->map[x][y] == 'E')
 	{
 		if (d->c > 0)
 		{
-			printf("There are still collectibles to eat !!");
+			write(1, "There are still collectibles to eat !!\r", 38);
 			return(1);
 		}
 		else
 		{
-			d->map[x][y] = 'P';
 			background(&d->img, BLACK);
 			//exit_clean(d);
-			printf("GG you ate it all");
+			write(1, "GG you ate it all", 17);
 			exit(0);
 		}
 	}
-	else
-		d->map[x][y] ='P';
+	d->map[x][y] ='P';
+	write(1, &d->step, 3);
 	return (0);
 }
 void move_forward(t_data *d)
@@ -52,7 +47,7 @@ void move_forward(t_data *d)
 	//if (check_position(d, d->x - 1, d->y) == 2)
 	d->map[d->x][d->y] = '0';
 	d->x -= 1;
-	d->step += 1;
+	d->step ++;
 }
 
 void move_backward(t_data *d)
@@ -61,7 +56,7 @@ void move_backward(t_data *d)
 		return;
 	d->map[d->x][d->y] = '0';
 	d->x += 1;
-	d->step += 1;
+	d->step ++;
 }
 
 void move_left(t_data *d)
@@ -70,7 +65,7 @@ void move_left(t_data *d)
 		return;
 	d->map[d->x][d->y] = '0';
 	d->y -= 1;
-	d->step += 1;
+	d->step ++;
 }
 
 void move_right(t_data *d)
@@ -79,5 +74,5 @@ void move_right(t_data *d)
 		return;
 	d->map[d->x][d->y] = '0';
 	d->y += 1;
-	d->step += 1;
+	d->step ++;
 }
