@@ -6,6 +6,9 @@ int	draw_map(t_data *d)
 	int l;
 
 	l = 0;
+	
+	//write(1, "step", 5);
+	//printf("d->step == %i\n", d->step);
 	//background(&d->img, GREEN);
 	find_player(d);
 	// printf("d->map[d->x][d->y] == %c\n", d->map[d->x][d->y]);
@@ -32,6 +35,7 @@ int	draw_map(t_data *d)
 		l++;
 		d->img.l = SIZE * l;
 	}
+	
 	mlx_put_image_to_window(d->mlx, d->mlx_win, d->img.img, 0, 0);
 	return(1);
 }

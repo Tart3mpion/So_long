@@ -135,7 +135,7 @@ void	move_backward(t_data *d);
 void	move_forward(t_data *d);
 
 /*hooks*/
-int	ft_keyrelease(int keysym, void *data);
+int	ft_keyrelease(int keysym, t_data *d);
 int	ft_keypress(int keysym, t_data *d);
 int keyhook(int keycode, t_data *d);
 
