@@ -13,7 +13,7 @@ int	init_image(t_data *d)
 	d->img.addr = mlx_get_data_addr(d->img.img, &d->img.bpp, &d->img.line_length,
 		&d->img.endian);
 	init_text(d);
-	//background(&d->img, GREEN);
+	background(&d->img, GREEN);
 	draw_map(d);
 	//mlx_loop_hook(d->mlx_win, mlx_put_image_to_window, d);
 	//mlx_hook(d->mlx_win, KeyPress, KeyPressMask, &ft_keypress, d);
@@ -37,8 +37,8 @@ void init_text(t_data *d)
 	//printf("&d->wall.width = %p\n", &d->wall.width);
 	init_player(d);
 	//
-	//init_coin(d);
-	//init_exit(d);
+	init_coin(d);
+	init_exit(d);
 }
 void init_floor(t_data *d)
 {
