@@ -31,13 +31,23 @@ int	init_image(t_data *d)
 void init_text(t_data *d)
 {
 	//memset(&d->txt, 0, sizeof(t_txt));
+	init_floor(d);
 	init_wall(d);
 	printf("d->txt.x %i\n", d->txt.x);
 	//printf("&d->wall.width = %p\n", &d->wall.width);
 	init_player(d);
-	init_coin(d);
+	//
+	//init_coin(d);
 	//init_exit(d);
 }
+void init_floor(t_data *d)
+{
+
+	d->floor.img = mlx_xpm_file_to_image(d->mlx, FLOOR, &(d->floor.width), &(d->floor.height));
+	d->floor.addr = mlx_get_data_addr(d->floor.img, &(d->floor.bpp),
+		&(d->floor.line_length), &(d->floor.endian));
+}
+
 
 void init_wall(t_data *d)
 {

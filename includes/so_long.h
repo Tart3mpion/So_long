@@ -108,6 +108,7 @@ void init_wall(t_data *d);
 void	init_player(t_data *d);
 void	init_coin(t_data *d);
 void	init_exit(t_data *d);
+void	init_floor(t_data *d);
 
 /*get_next-line*/
 char	*stock_str(char *buf, char *str);

@@ -24,7 +24,7 @@ int	draw_map(t_data *d)
 			if (d->map[l][c] == '1')
 				draw_square(d, &(d->wall));	//printf("d->map[l][c] ==> %c\n", d->map[l][c]);
 			else if (d->map[l][c] == '0')
-				draw_square(d, &(d->floor));//, get_pixel(&(d->floor), d->txt.x, d->txt.y));
+				draw_square(d, &(d->wall));//, get_pixel(&(d->floor), d->txt.x, d->txt.y));
 			else if (d->map[l][c] == 'P')
 				draw_square(d, &(d->player));//, get_pixel(&(d->player), d->txt.x, d->txt.y));
 			else if (d->map[l][c] == 'C')
