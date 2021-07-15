@@ -16,19 +16,21 @@ int	draw_map(t_data *d)
 	while (d->map[l])
 	{
 		d->img.c = 0;
+
 		c = 0;
 		while (d->map[l][c])
 		{
+			printf("img->line_length ==%i\n", d->wall.line_length);
 			if (d->map[l][c] == '1')
-				draw_square(d, PINK);	//printf("d->map[l][c] ==> %c\n", d->map[l][c]);
+				draw_square(d, get_pixel(&d->wall, d->txt.x, d->txt.y));	//printf("d->map[l][c] ==> %c\n", d->map[l][c]);
 			else if (d->map[l][c] == '0')
-				draw_square(d, GREEN);
+				draw_square(d, get_pixel(&d->floor, d->txt.x, d->txt.y);
 			else if (d->map[l][c] == 'P')
-				draw_square(d, BLUE);
+				draw_square(d, get_pixel(&d->player, d->txt.x, d->txt.y));
 			else if (d->map[l][c] == 'C')
-				draw_square(d, YELLOW);
-			else
-				draw_square(d, ORANGE);
+				draw_square(d, get_pixel(&d->coin, d->txt.x, d->txt.y));
+			//else
+				//draw_square(d, ORANGE);
 			c++;
 			d->img.l = l * SIZE;
 		}
@@ -40,7 +42,10 @@ int	draw_map(t_data *d)
 	return(1);
 }
 
+// void background(t_data *data)
+// {
 
+// }
 void	background(t_img *img, int color)
 {
 	int	i;
@@ -50,12 +55,21 @@ void	background(t_img *img, int color)
 	{
 		j = 0;
 		while (j < img->width)
-			img_pix_put(img, j++, i, color);
+			img_pix_put(img, j++, i, color);//get_color(floor)
 		++i;
 	}
 }
 
-int draw_square(t_data *d, int color) //faire une fonction draw_text
+int	get_pixel(t_txt *img, int x, int y)
+{
+	printf("img->line_length ==%i\n", img->line_length);
+	return (*(int *)(img->addr + (y * img->line_length + (x * \
+						(img->bpp / 8)))));
+
+}
+
+
+int draw_square(t_data *d, int x, int y) //faire une fonction draw_text
 {
 	int c;
 	int	l;
@@ -69,12 +83,14 @@ int draw_square(t_data *d, int color) //faire une fonction draw_text
 		{
 			img_pix_put(&d->img, d->img.c, d->img.l, color);
 			d->img.c++;
+			d->txt.x++;
 		}
 		d->img.l++;
+		d->txt.y++;
 	}
 	return(0);
 }
-
+// int get_color()
 
 void	img_pix_put(t_img *img, int x, int y, int color)
 {

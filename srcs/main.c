@@ -3,22 +3,23 @@
 int main(int ac, char **argv)
 {
     int fd;
-    t_data infos;
+    t_data d;
 
     if ((ac < 2) || (check_format(argv[1], ".ber")))
         printf("Error\nyou need to add a map with a .ber extension");
     fd = open(argv[1], O_RDONLY);
-    memset(&infos, 0, sizeof(t_data));
-    // printf("infos->columns == %d\n", infos.columns);
-	// printf("infos->row == %d\n", infos.row);
-    get_file(&infos, fd, 0);
+    memset(&d, 0, sizeof(t_data));
+    
+    get_file(&d, fd, 0);
+    printf("infos->columns == %d\n", d.columns);
+	printf("infos->row == %d\n", d.row);
     //print_map(&infos);
-    is_map_valid(&infos);
-    init_image(&infos);
+    is_map_valid(&d);
+    init_image(&d);
     //printf("player coordonnees == %d%d\n", infos.x, infos.y);
     //printf("you made %d steps", infos.step);
     close(fd);
-    free(infos.map);
+    free(d.map);
     
     //faire une fonction qui free tout
     /*faire une fonction qui pqrse les textures en fonctions de la carte*/

@@ -30,6 +30,7 @@
 #define WALL "textures/wall.xpm"
 #define EXIT "textures/exit.xpm"
 #define COIN "textures/collectible.xpm"
+#define FLOOR "textures/floor.xpm"
 
 
 typedef struct	s_img
@@ -55,6 +56,8 @@ typedef struct	s_txt
 	int		endian;
 	int		width;
     int		height;
+	int		x;
+	int		y;
 }				t_txt;
 
 typedef struct	s_data
@@ -77,6 +80,7 @@ typedef struct	s_data
 	t_txt	wall;
 	t_txt	player;
 	t_txt	coin;
+	t_txt	floor;
 	t_txt	exit;
 }				t_data;
 
@@ -98,11 +102,9 @@ int		check_row(t_data *infos);
 int		init_image(t_data *d);
 t_data	load_image(void *mlx, char *path);
 
-
-
 /*init_textures*/
 void 	init_text(t_data *d);
-void 	init_wall(t_data *d);
+void init_wall(t_data *d);
 void	init_player(t_data *d);
 void	init_coin(t_data *d);
 void	init_exit(t_data *d);
@@ -115,14 +117,14 @@ int		get_next_line(int fd, char **line);
 /*display*/
 void	print_map(t_data *infos);
 t_data	load_image(void *mlx, char *path);
-int		draw_square(t_data *data, int color);
+int		draw_square(t_data *data, t_txt *img);
 void	background(t_img *img, int color);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	img_pix_put(t_img *img, int x, int y, int color);
 //void 	draw_decor(t_data *d);
 //void 	draw_elements(t_data *d);
-int	draw_map(t_data *data);
-void	render_frame(t_data *data);
+int		draw_map(t_data *data);
+int		get_pixel(t_txt *img, int x, int y);
 void	so_long_loop(t_data *d);
 
 /*actions*/
@@ -135,7 +137,7 @@ void	move_backward(t_data *d);
 void	move_forward(t_data *d);
 
 /*hooks*/
-int	ft_keyrelease(int keysym, t_data *d);
+int	ft_keyrelease(int keysym, t_data *data);
 int	ft_keypress(int keysym, t_data *d);
 int keyhook(int keycode, t_data *d);
 
