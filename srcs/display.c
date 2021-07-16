@@ -1,43 +1,36 @@
 #include "so_long.h"
 
-int	draw_map(t_data *d)
+int	draw_elements(t_data *d)
 {
 	int c;
 	int l;
 
 	l = 0;
-	
-	//write(1, "step", 5);
-	//printf("d->step == %i\n", d->step);
-	//background(&d->img, GREEN);
 	find_player(d);
-	// printf("d->map[d->x][d->y] == %c\n", d->map[d->x][d->y]);
-	// printf("coordonnees player ==> %i-%i\n", d->x, d->y);
+	draw_map(d);
 	while (d->map[l])
 	{
 		d->img.c = 0;
-
 		c = 0;
 		while (d->map[l][c])
 		{
-			printf("img->line_length ==%i\n", d->wall.line_length);
-			if (d->map[l][c] == '1')
-				draw_square(d, &(d->wall));	//printf("d->map[l][c] ==> %c\n", d->map[l][c]);
-			else if (d->map[l][c] == '0')
-				draw_square(d, &(d->floor));//, get_pixel(&(d->floor), d->txt.x, d->txt.y));
-			else if (d->map[l][c] == 'P')
+			
+			// printf("d->img.l ==%i\n", d->img.l);
+			// printf("img->line_length ==%i\n", d->wall.line_length);
+			if (d->map[l][c] == 'P')
 				draw_square(d, &(d->player));//, get_pixel(&(d->player), d->txt.x, d->txt.y));
 			else if (d->map[l][c] == 'C')
 				draw_square(d, &(d->coin));//, get_pixel(&(d->coin), d->txt.x, d->txt.y));
-			else
+			else if (d->map[l][c] == 'E')
 				draw_square(d, &(d->exit));
+			else
+				d->img.c += SIZE;
 			c++;
 			d->img.l = l * SIZE;
 		}
 		l++;
 		d->img.l = SIZE * l;
 	}
-	
 	mlx_put_image_to_window(d->mlx, d->mlx_win, d->img.img, 0, 0);
 	return(1);
 }
@@ -46,26 +39,39 @@ int	draw_map(t_data *d)
 // {
 
 // }
-void	background(t_img *img, int color)
+void	draw_map(t_data *d)
 {
-	int	i;
-	int	j;
-	i = 0;
-	while (i < img->heigth)
+	int l;
+	int c;
+
+	find_player(d);
+	l = 0;
+	while (d->map[l])
 	{
-		j = 0;
-		while (j < img->width)
-			img_pix_put(img, j++, i, color);//get_color(floor)
-		++i;
+		d->img.c = 0;
+		c = 0;
+		while (d->map[l][c])
+		{
+			if (d->map[l][c] == '1')
+				draw_square(d, &(d->wall));
+			else if (d->map[l][c] == '0' || d->map[l][c] == 'C' || d->map[l][c] == 'P')
+				draw_square(d, &(d->floor));
+			else
+				d->img.c += SIZE;
+			c++;
+			d->img.l = l * SIZE;
+		}
+		l++;
+		d->img.l = SIZE * l;
 	}
-}
+	//mlx_put_image_to_window(d->mlx, d->mlx_win, d->img.img, 0, 0);
+}	
 
 int	get_pixel(t_txt *img, int x, int y)
 {
 	//printf("img->line_length ==%i\n", img->line_length);
 	return (*(int *)(img->addr + (y * img->line_length + (x * \
 						(img->bpp / 8)))));
-
 }
 
 
@@ -84,13 +90,15 @@ int draw_square(t_data *d, t_txt *img) //faire une fonction draw_text
 		img->x = 0;
 		while (d->img.c < SIZE + c)
 		{
-			img_pix_put(&d->img, d->img.c, d->img.l, get_pixel(img, img->x, img->y));
+			if (get_pixel(img, img->x, img->y) != (int)BLACK)
+				img_pix_put(&d->img, d->img.c, d->img.l, get_pixel(img, img->x, img->y));
 			d->img.c++;
 			//printf("d->txt.x %i\n", d->wall.x);
 			img->x++;
 		}
 		d->img.l++;
 		img->y++;
+		
 	}
 	return(0);
 }

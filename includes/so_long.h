@@ -104,7 +104,7 @@ t_data	load_image(void *mlx, char *path);
 
 /*init_textures*/
 void 	init_text(t_data *d);
-void init_wall(t_data *d);
+void 	init_wall(t_data *d);
 void	init_player(t_data *d);
 void	init_coin(t_data *d);
 void	init_exit(t_data *d);
@@ -117,14 +117,15 @@ int		get_next_line(int fd, char **line);
 
 /*display*/
 void	print_map(t_data *infos);
-t_data	load_image(void *mlx, char *path);
+//t_data	load_image(void *mlx, char *path);
 int		draw_square(t_data *data, t_txt *img);
-void	background(t_img *img, int color);
+//void	background(t_img *img, int color);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	img_pix_put(t_img *img, int x, int y, int color);
 //void 	draw_decor(t_data *d);
 //void 	draw_elements(t_data *d);
-int		draw_map(t_data *data);
+void		draw_map(t_data *d);
+int		draw_elements(t_data *d);
 int		get_pixel(t_txt *img, int x, int y);
 void	so_long_loop(t_data *d);
 

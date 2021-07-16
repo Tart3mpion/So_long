@@ -13,8 +13,9 @@ int	init_image(t_data *d)
 	d->img.addr = mlx_get_data_addr(d->img.img, &d->img.bpp, &d->img.line_length,
 		&d->img.endian);
 	init_text(d);
-	background(&d->img, GREEN);
-	draw_map(d);
+	//background(&d->img, GREEN);
+	//draw_map(d);
+	draw_elements(d);
 	//mlx_loop_hook(d->mlx_win, mlx_put_image_to_window, d);
 	//mlx_hook(d->mlx_win, KeyPress, KeyPressMask, &ft_keypress, d);
 	//mlx_hook(d->mlx_win, KeyRelease, KeyReleaseMask, &ft_keyrelease, d);
@@ -22,7 +23,7 @@ int	init_image(t_data *d)
 	mlx_hook(d->mlx_win, KeyRelease, KeyReleaseMask, &ft_keyrelease, d);
 	mlx_hook(d->mlx_win, 17, 1L<<17, exit_clean, d);
 	//mlx_key_hook(d->mlx_win, keyhook, d);
-	mlx_loop_hook(d->mlx_win, draw_map, d);
+	mlx_loop_hook(d->mlx_win, draw_elements, d);
 	mlx_loop(d->mlx);
 	//exit_clean(d);
 	return(1);
@@ -33,7 +34,6 @@ void init_text(t_data *d)
 	//memset(&d->txt, 0, sizeof(t_txt));
 	init_floor(d);
 	init_wall(d);
-	printf("d->txt.x %i\n", d->txt.x);
 	//printf("&d->wall.width = %p\n", &d->wall.width);
 	init_player(d);
 	//

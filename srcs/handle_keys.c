@@ -12,7 +12,7 @@ int	ft_keypress(int keysym, t_data *d)
 		move_left(d);
 	if (keysym == D)
 		move_right(d);
-	draw_map(d);	
+	draw_elements(d);	
 	return (0);
 }
 

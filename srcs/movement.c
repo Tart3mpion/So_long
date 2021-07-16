@@ -29,8 +29,8 @@ int check_position(t_data *d, int x, int y)
 		}
 		else
 		{
-			background(&d->img, BLACK);
-			mlx_put_image_to_window(d->mlx, d->mlx_win, d->img.img, 0, 0);
+			//background(&d->img, BLACK);
+			//mlx_put_image_to_window(d->mlx, d->mlx_win, d->img.img, 0, 0);
 			//exit_clean(d);
 			write(1, "GG you ate it all", 17);
 			exit(0);
@@ -47,6 +47,7 @@ void move_forward(t_data *d)
 		return;
 	//if (check_position(d, d->x - 1, d->y) == 2)
 	d->map[d->x][d->y] = '0';
+	draw_square(d, &(d->exit));
 	d->x -= 1;
 	if (d->map[d->x - 1][d->y] != '1')
 		d->step ++;
@@ -57,6 +58,7 @@ void move_backward(t_data *d)
 	if (check_position(d, d->x + 1, d->y))
 		return;
 	d->map[d->x][d->y] = '0';
+	//draw_square(d, &(d->floor));
 	d->x += 1;
 	if (d->map[d->x - 1][d->y] != '1')
 		d->step ++;
