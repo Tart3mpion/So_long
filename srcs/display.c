@@ -7,7 +7,7 @@ int	draw_elements(t_data *d)
 
 	l = 0;
 	find_player(d);
-	draw_map(d);
+	draw_floor(d);
 	while (d->map[l])
 	{
 		d->img.c = 0;
@@ -17,6 +17,8 @@ int	draw_elements(t_data *d)
 			
 			// printf("d->img.l ==%i\n", d->img.l);
 			// printf("img->line_length ==%i\n", d->wall.line_length);
+			// if (d->map[l][c] == '1')
+			//  	draw_square(d, &(d->wall));
 			if (d->map[l][c] == 'P')
 				draw_square(d, &(d->player));//, get_pixel(&(d->player), d->txt.x, d->txt.y));
 			else if (d->map[l][c] == 'C')
@@ -31,7 +33,10 @@ int	draw_elements(t_data *d)
 		l++;
 		d->img.l = SIZE * l;
 	}
+	
 	mlx_put_image_to_window(d->mlx, d->mlx_win, d->img.img, 0, 0);
+	ft_putnbr_fd(d->step, 1);
+	write(1, "\r", 1);
 	return(1);
 }
 
@@ -39,7 +44,35 @@ int	draw_elements(t_data *d)
 // {
 
 // }
-void	draw_map(t_data *d)
+void	draw_floor(t_data *d)
+{
+	int l;
+	int c;
+
+	find_player(d);
+	l = 0;
+	while (d->map[l])
+	{
+		d->img.c = 0;
+		c = 0;
+		while (d->map[l][c])
+		{
+			// if (d->map[l][c] == '1')
+			// 	draw_square(d, &(d->wall));
+			// else if (d->map[l][c] == '0' || d->map[l][c] == 'C' || d->map[l][c] == 'P')
+			draw_square(d, &(d->floor));
+			// else
+			// 	d->img.c += SIZE;
+			c++;
+			d->img.l = l * SIZE;
+		}
+		l++;
+		d->img.l = SIZE * l;
+	}
+	draw_wall(d);
+	//mlx_put_image_to_window(d->mlx, d->mlx_win, d->img.img, 0, 0);
+}
+void	draw_wall(t_data *d)
 {
 	int l;
 	int c;
@@ -54,8 +87,8 @@ void	draw_map(t_data *d)
 		{
 			if (d->map[l][c] == '1')
 				draw_square(d, &(d->wall));
-			else if (d->map[l][c] == '0' || d->map[l][c] == 'C' || d->map[l][c] == 'P')
-				draw_square(d, &(d->floor));
+			// else if (d->map[l][c] == '0' || d->map[l][c] == 'C' || d->map[l][c] == 'P')
+			//draw_square(d, &(d->floor));
 			else
 				d->img.c += SIZE;
 			c++;
@@ -65,7 +98,7 @@ void	draw_map(t_data *d)
 		d->img.l = SIZE * l;
 	}
 	//mlx_put_image_to_window(d->mlx, d->mlx_win, d->img.img, 0, 0);
-}	
+}
 
 int	get_pixel(t_txt *img, int x, int y)
 {

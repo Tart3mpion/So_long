@@ -32,7 +32,6 @@
 #define COIN "textures/collectible.xpm"
 #define FLOOR "textures/floor.xpm"
 
-
 typedef struct	s_img
 {
 	void	*img;
@@ -124,7 +123,8 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	img_pix_put(t_img *img, int x, int y, int color);
 //void 	draw_decor(t_data *d);
 //void 	draw_elements(t_data *d);
-void		draw_map(t_data *d);
+void	draw_floor(t_data *d);
+void	draw_wall(t_data *d);
 int		draw_elements(t_data *d);
 int		get_pixel(t_txt *img, int x, int y);
 void	so_long_loop(t_data *d);

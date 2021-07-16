@@ -20,7 +20,7 @@ int	init_image(t_data *d)
 	//mlx_hook(d->mlx_win, KeyPress, KeyPressMask, &ft_keypress, d);
 	//mlx_hook(d->mlx_win, KeyRelease, KeyReleaseMask, &ft_keyrelease, d);
 	mlx_hook(d->mlx_win, 02, 1L<<0, ft_keypress, d);
-	mlx_hook(d->mlx_win, KeyRelease, KeyReleaseMask, &ft_keyrelease, d);
+	//mlx_hook(d->mlx_win, KeyRelease, KeyReleaseMask, &ft_keyrelease, d);
 	mlx_hook(d->mlx_win, 17, 1L<<17, exit_clean, d);
 	//mlx_key_hook(d->mlx_win, keyhook, d);
 	mlx_loop_hook(d->mlx_win, draw_elements, d);
