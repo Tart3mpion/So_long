@@ -145,4 +145,5 @@ int keyhook(int keycode, t_data *d);
 
 /*exit_clean*/
 int	exit_clean(t_data *data);
+int free_map(t_data *d);
 #endif

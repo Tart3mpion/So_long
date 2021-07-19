@@ -9,25 +9,16 @@ int main(int ac, char **argv)
         printf("Error\nyou need to add a map with a .ber extension");
     fd = open(argv[1], O_RDONLY);
     memset(&d, 0, sizeof(t_data));
-    
     get_file(&d, fd, 0);
     printf("infos->columns == %d\n", d.columns);
 	printf("infos->row == %d\n", d.row);
     //print_map(&infos);
     is_map_valid(&d);
     init_image(&d);
-    //printf("player coordonnees == %d%d\n", infos.x, infos.y);
-    //printf("you made %d steps", infos.step);
     close(fd);
-    free(d.map);
+    if (d.map)
+        free(d.map);
     
-    //faire une fonction qui free tout
-    /*faire une fonction qui pqrse les textures en fonctions de la carte*/
-    /*draw floor && wall*/
-    /*draw_player*/
-    /*play*/
-    /*add sprites*/
-    /*configure exit*/
     return (0);
 }
 

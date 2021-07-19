@@ -33,17 +33,12 @@ int	draw_elements(t_data *d)
 		l++;
 		d->img.l = SIZE * l;
 	}
-	
 	mlx_put_image_to_window(d->mlx, d->mlx_win, d->img.img, 0, 0);
 	ft_putnbr_fd(d->step, 1);
 	write(1, "\r", 1);
 	return(1);
 }
 
-// void background(t_data *data)
-// {
-
-// }
 void	draw_floor(t_data *d)
 {
 	int l;
