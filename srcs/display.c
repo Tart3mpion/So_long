@@ -6,7 +6,6 @@ int	draw_elements(t_data *d)
 	int l;
 
 	l = 0;
-	//find_player(d);
 	draw_floor(d);
 	while (d->map[l])
 	{
@@ -37,7 +36,6 @@ void	draw_floor(t_data *d)
 	int l;
 	int c;
 
-	find_player(d);
 	l = 0;
 	d->img.l = 0;
 	while (d->map[l])
@@ -59,33 +57,6 @@ void	draw_floor(t_data *d)
 		d->img.l = SIZE * l;
 	}
 }
-// void	draw_wall(t_data *d)
-// {
-// 	int l;
-// 	int c;
-
-// 	find_player(d);
-// 	l = 0;
-// 	while (d->map[l])
-// 	{
-// 		d->img.c = 0;
-// 		c = 0;
-// 		while (d->map[l][c])
-// 		{
-// 			if (d->map[l][c] == '1')
-// 				draw_square(d, &(d->wall));
-// 			// else if (d->map[l][c] == '0' || d->map[l][c] == 'C' || d->map[l][c] == 'P')
-// 			//draw_square(d, &(d->floor));
-// 			else
-// 				d->img.c += SIZE;
-// 			c++;
-// 			d->img.l = l * SIZE;
-// 		}
-// 		l++;
-// 		d->img.l = SIZE * l;
-// 	}
-// 	//mlx_put_image_to_window(d->mlx, d->mlx_win, d->img.img, 0, 0);
-// }
 
 int	get_color(t_txt *img, int x, int y)
 {

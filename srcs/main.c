@@ -8,7 +8,8 @@ int main(int ac, char **argv)
     d.map = NULL;
     if ((ac < 2) || (check_format(argv[1], ".ber")))
         print_error(&d, 5);
-    if ((fd = open(argv[1], O_RDONLY)))
+    fd = open(argv[1], O_RDONLY);
+    if (fd == -1)
         print_error(&d, 6);
     memset(&d, 0, sizeof(t_data));
     get_file(&d, fd, 0);
