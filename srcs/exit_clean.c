@@ -2,18 +2,20 @@
 
 int	exit_clean(t_data *d)
 {
-	//write(1, "@@@@@@@@@@@", 10);
 	if (d->mlx)
 	{
 		mlx_destroy_image(d->mlx, d->img.img);
+		mlx_destroy_image(d->mlx, d->wall.img);
+		mlx_destroy_image(d->mlx, d->floor.img);
+		mlx_destroy_image(d->mlx, d->coin.img);
+		mlx_destroy_image(d->mlx, d->player.img);
+		mlx_destroy_image(d->mlx, d->exit.img);
 		mlx_destroy_window(d->mlx, d->mlx_win);
 		mlx_destroy_display(d->mlx);
-		//free(d->mlx);
+		free(d->mlx);
 	}
 	if (d->map)
 		free_map(d);
-	// if  (d)
-	// 	free(d);
 	exit(1);
 	return(1);
 }

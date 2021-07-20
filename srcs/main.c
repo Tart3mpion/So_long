@@ -10,9 +10,6 @@ int main(int ac, char **argv)
     fd = open(argv[1], O_RDONLY);
     memset(&d, 0, sizeof(t_data));
     get_file(&d, fd, 0);
-    printf("infos->columns == %d\n", d.columns);
-	printf("infos->row == %d\n", d.row);
-    //print_map(&infos);
     is_map_valid(&d);
     init_image(&d);
     close(fd);
@@ -22,11 +19,12 @@ int main(int ac, char **argv)
     return (0);
 }
 
-int is_map_valid(t_data *infos)
+int is_map_valid(t_data *d)
 {
-    check_infos(infos);
-    //printf("is_closed(map, infos) %i\n", is_closed(map, infos));
-    if (is_rectangular(infos) || is_closed(infos))
-        print_error(infos, 3);
+    check_infos(d);
+    if (is_rectangular(d) || is_closed(d))
+        print_error(d, 3);
+    if (d->c < 1 || d->p < 1 || d->e < 1)
+		print_error(d, 1);
     return (0);
 }

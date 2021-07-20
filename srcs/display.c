@@ -6,25 +6,18 @@ int	draw_elements(t_data *d)
 	int l;
 
 	l = 0;
-	//write(1, "@@@@@@@@@@@", 10);
-	find_player(d);
-	// draw_floor(d);
-	puts("pong");
+	//find_player(d);
+	draw_floor(d);
 	while (d->map[l])
 	{
 		d->img.c = 0;
 		c = 0;
 		while (d->map[l][c])
 		{
-			
-			// printf("d->img.l ==%i\n", d->img.l);
-			// printf("img->line_length ==%i\n", d->wall.line_length);
-			// if (d->map[l][c] == '1')
-			//  	draw_square(d, &(d->wall));
 			if (d->map[l][c] == 'P')
-				draw_square(d, &(d->player));//, get_pixel(&(d->player), d->txt.x, d->txt.y));
+				draw_square(d, &(d->player));
 			else if (d->map[l][c] == 'C')
-				draw_square(d, &(d->coin));//, get_pixel(&(d->coin), d->txt.x, d->txt.y));
+				draw_square(d, &(d->coin));
 			else if (d->map[l][c] == 'E')
 				draw_square(d, &(d->exit));
 			else
@@ -36,7 +29,6 @@ int	draw_elements(t_data *d)
 		d->img.l = SIZE * l;
 	}
 	mlx_put_image_to_window(d->mlx, d->mlx_win, d->img.img, 0, 0);
-
 	return(1);
 }
 
@@ -46,8 +38,8 @@ void	draw_floor(t_data *d)
 	int c;
 
 	find_player(d);
-	puts("XXXXXXX");
 	l = 0;
+	d->img.l = 0;
 	while (d->map[l])
 	{
 		d->img.c = 0;
@@ -66,8 +58,6 @@ void	draw_floor(t_data *d)
 		l++;
 		d->img.l = SIZE * l;
 	}
-	//draw_wall(d);
-	//mlx_put_image_to_window(d->mlx, d->mlx_win, d->img.img, 0, 0);
 }
 // void	draw_wall(t_data *d)
 // {
@@ -99,13 +89,12 @@ void	draw_floor(t_data *d)
 
 int	get_color(t_txt *img, int x, int y)
 {
-	//printf("img->line_length ==%i\n", img->line_length);
 	return (*(int *)(img->addr + (y * img->line_length + (x * \
 						(img->bpp / 8)))));
 }
 
 
-int draw_square(t_data *d, t_txt *img) //faire une fonction draw_text
+int draw_square(t_data *d, t_txt *img)
 {
 	int c;
 	int	l;
@@ -132,30 +121,10 @@ int draw_square(t_data *d, t_txt *img) //faire une fonction draw_text
 }
 
 
-// void	img_pix_put(t_img *img, int x, int y, int color)
-// {
-// 	char    *pixel;
-// 	int		i;
-
-// 	i = img->bpp - 8;
-//     pixel = img->addr + (y * img->line_length + x * (img->bpp / 8));
-// 	while (i >= 0)
-// 	{
-// 		if (img->endian != 0)
-
-// 			*pixel++ = (color >> i) & 0xFF;
-// 		else
-
-// 			*pixel++ = (color >> (img->bpp - 8 - i)) & 0xFF;
-// 		i -= 8;
-// 	}
-// }
-
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
 	dst = img->addr + (y * img->line_length + x * (img->bpp / 8));
 	*(unsigned int*)dst = color;
-	//printf("dst %u\n", *(unsigned int*)dst);
 }

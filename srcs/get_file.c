@@ -6,7 +6,7 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 13:57:13 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/07/13 15:33:53 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/07/20 15:30:54 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,51 +33,48 @@ void	get_file(t_data *data, int fd, int lvl)
 		data->map = malloc(sizeof(char*) * (lvl + 2));
 		data->map[lvl + 1] = NULL;
 		data->map[lvl] = line;
-		//printf("data->map[lvl] == %s\n", data->map[lvl]);
 	}
 	data->map[lvl] = line;
 }
-void	print_map(t_data *infos)
-{
+// void	print_map(t_data *infos)
+// {
 	
-	for (int i = 0; infos->map[i]; i++)
-    {
-        printf("\n%d - %s\n", i, infos->map[i]);
-    }
-}
+// 	for (int i = 0; infos->map[i]; i++)
+//     {
+//         printf("\n%d - %s\n", i, infos->map[i]);
+//     }
+// }
 
-int check_infos(t_data *infos)
+int check_infos(t_data *d)
 {
 	int l;
 	int c;
 
 	l = 0;
-	while (infos->map[l])
+	while (d->map[l])
 	{
 	c = 0;
-		while(infos->map[l][c])
+		while(d->map[l][c])
 		{
-			check_inputs(infos->map[l][c], infos);
-			if (infos->map[l][c] == 'C')
-				infos->c += 1;
-			if (infos->map[l][c] == 'P')
-				infos->p += 1;
-			if (infos->map[l][c] == 'E')
-				infos->e += 1;
+			check_inputs(d->map[l][c], d);
+			if (d->map[l][c] == 'C')
+				d->c += 1;
+			if (d->map[l][c] == 'P')
+				d->p += 1;
+			if (d->map[l][c] == 'E')
+				d->e += 1;
 			c++;
 		}
 		l++; 
 	}
-	infos->columns = c;
-	infos->row = l;
-	if (infos->c < 1 || infos->p < 1 || infos->e < 1)
-		print_error(infos, 1);
+	d->columns = c;
+	d->row = l;
 	return (0);
 }
 
-int check_inputs(char c, t_data *infos)
+int check_inputs(char c, t_data *d)
 {
 	if (c != '0' && c != '1' && c != 'E' && c != 'P' && c != 'C')
-		print_error(infos, 2);
+		print_error(d, 2);
 	return (0);
 }
