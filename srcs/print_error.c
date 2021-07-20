@@ -80,12 +80,18 @@ int check_column(t_data *d)
 void print_error(t_data *d, int error)
 {
 	if (error == 1)
-		printf("Error\nmissing infos");
+		write(1, "Error\nInfos are missing", 24);
 	else if (error == 2)
-		printf("Error\nwrong character");
+		write(1, "Error\nWrong input", 18);
+	else if (error == 3)
+		write(1, "Error\nMap is invalid!", 20);
+	else if (error == 4)
+		write(1, "Error\nThere are too many players", 32);
+	else if (error == 5)
+		write(1, "Error\nyou need to add a map with a .ber extension", 50);
 	else
-		printf("Error\nmap is invalid!");
-	free(d->map);
-	//free(d);
+		write(1, "Error\nThere is no file with that name", 37);
+	if (d->map)
+		free(d->map);
 	exit(1);
 }

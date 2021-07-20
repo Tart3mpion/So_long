@@ -13,7 +13,7 @@ CC = clang -g3 $(FLAGS)
 
 LIBS = ./libft
 
-FLAGS = -I. -I$(INCLUDES) -Wall -Werror -Wextra
+FLAGS = -I. -I$(INCLUDES) -Wall -Werror -Wextra -fsanitize=address
 
 all: $(NAME)
 
