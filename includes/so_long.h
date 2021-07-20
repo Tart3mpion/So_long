@@ -1,4 +1,4 @@
-#ifndef SO_LONG_H
+  #ifndef SO_LONG_H
 # define SO_LONG_H
 
 # include "../libft/libft.h"
@@ -126,8 +126,9 @@ void	img_pix_put(t_img *img, int x, int y, int color);
 void	draw_floor(t_data *d);
 void	draw_wall(t_data *d);
 int		draw_elements(t_data *d);
-int		get_pixel(t_txt *img, int x, int y);
-void	so_long_loop(t_data *d);
+int		get_color(t_txt *img, int x, int y);
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
+
 
 /*actions*/
 void	find_player(t_data *d);

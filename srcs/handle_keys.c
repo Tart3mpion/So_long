@@ -3,7 +3,7 @@
 int	ft_keypress(int keysym, t_data *d)
 {
 	if (keysym == XK_Escape)
-		mlx_destroy_window(d->mlx, d->mlx_win);
+		exit_clean(d);
 	if (keysym == W)
 		move_forward(d);
 	if (keysym == S)
@@ -13,22 +13,6 @@ int	ft_keypress(int keysym, t_data *d)
 	if (keysym == D)
 		move_right(d);
 	draw_elements(d);	
+	write(1, "@@@@@@@@@@@", 10);
 	return (0);
 }
-
-// int	ft_keyrelease(int keysym, t_data *d)
-// {
-// 	if (keysym == D || keysym == A || keysym == W || keysym == S)
-// 	{
-		
-// 	}
-// 	return (0);
-// }
-
-// int keyhook(int keycode, t_data *d)
-// {
-// 	d->step += 1;
-	
-// 	printf("\n%d\n", keycode);
-// 	return(1);
-// }

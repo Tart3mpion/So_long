@@ -2,6 +2,7 @@
 
 int	exit_clean(t_data *d)
 {
+	//write(1, "@@@@@@@@@@@", 10);
 	if (d->mlx)
 	{
 		mlx_destroy_image(d->mlx, d->img.img);

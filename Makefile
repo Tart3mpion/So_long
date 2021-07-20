@@ -9,11 +9,11 @@ handle_keys.c exit_clean.c init_image.c movement.c \
 
 OBJS =${addprefix srcs/,${SRCS:.c=.o}}
 
-CC = clang -g $(FLAGS)
+CC = clang -g3 $(FLAGS)
 
 LIBS = ./libft
 
-FLAGS = -I. -I$(INCLUDES) -Wall -Werror -Wextra -fsanitize=address
+FLAGS = -I. -I$(INCLUDES) -Wall -Werror -Wextra #-fsanitize=address
 
 all: $(NAME)
 
