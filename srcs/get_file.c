@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_file.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/01 13:57:13 by ldes-cou@st       #+#    #+#             */
-/*   Updated: 2021/07/20 15:30:54 by ldes-cou@st      ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "so_long.h"
 
 int     check_format(char *str, char *ext)
@@ -36,14 +24,6 @@ void	get_file(t_data *data, int fd, int lvl)
 	}
 	data->map[lvl] = line;
 }
-// void	print_map(t_data *infos)
-// {
-	
-// 	for (int i = 0; infos->map[i]; i++)
-//     {
-//         printf("\n%d - %s\n", i, infos->map[i]);
-//     }
-// }
 
 int check_infos(t_data *d)
 {

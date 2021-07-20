@@ -88,14 +88,14 @@ int		main(int ac, char **argv);
 /*error management*/
 void	get_file(t_data *data, int fd, int lvl);
 int		check_format(char *str, char *ext);
-int		check_infos(t_data *infos);
-int		check_inputs(char c, t_data *infos);
-int		is_map_valid(t_data *infos);
-void	print_error(t_data *infos, int error);
-int		is_rectangular(t_data *infos);
-int		is_closed(t_data *infos);
-int		check_column(t_data *infos);
-int		check_row(t_data *infos);
+int		check_infos(t_data *d);
+int		check_inputs(char c, t_data *d);
+int		is_map_valid(t_data *d);
+void	print_error(t_data *d, int error);
+int		is_rectangular(t_data *d);
+int		is_closed(t_data *d);
+int		check_column(t_data *d);
+int		check_row(t_data *d);
 
 /*init_images*/
 int		init_image(t_data *d);
@@ -115,7 +115,7 @@ char	*stock_line(char *str, char **line);
 int		get_next_line(int fd, char **line);
 
 /*display*/
-void	print_map(t_data *infos);
+void	print_map(t_data *d);
 //t_data	load_image(void *mlx, char *path);
 int		draw_square(t_data *data, t_txt *img);
 //void	background(t_img *img, int color);
