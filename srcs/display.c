@@ -2,36 +2,16 @@
 
 int	draw_elements(t_data *d)
 {
-	int c;
-	int l;
-
-	l = 0;
-	draw_floor(d);
-	while (d->map[l])
-	{
-		d->img.c = 0;
-		c = 0;
-		while (d->map[l][c])
-		{
-			if (d->map[l][c] == 'P')
-				draw_square(d, &(d->player));
-			else if (d->map[l][c] == 'C')
-				draw_square(d, &(d->coin));
-			else if (d->map[l][c] == 'E')
-				draw_square(d, &(d->exit));
-			else
-				d->img.c += SIZE;
-			c++;
-			d->img.l = l * SIZE;
-		}
-		l++;
-		d->img.l = SIZE * l;
-	}
+	find_player(d);
+	draw_decor(d);
+	draw_flower(d);
+	draw_player(d);
+	draw_exit(d);
 	mlx_put_image_to_window(d->mlx, d->mlx_win, d->img.img, 0, 0);
 	return(1);
 }
 
-void	draw_floor(t_data *d)
+void	draw_decor(t_data *d)
 {
 	int l;
 	int c;
@@ -57,6 +37,82 @@ void	draw_floor(t_data *d)
 		d->img.l = SIZE * l;
 	}
 }
+
+void	draw_player(t_data *d)
+{
+	int l;
+	int c;
+
+	l = 0;
+	d->img.l = 0;
+	while (d->map[l])
+	{
+		d->img.c = 0;
+		c = 0;
+		while (d->map[l][c])
+		{
+			if (d->map[l][c] == 'P')
+				draw_square(d, &(d->player));
+			else
+				d->img.c += SIZE;
+			c++;
+			d->img.l = l * SIZE;
+		}
+		l++;
+		d->img.l = SIZE * l;
+	}
+}
+
+void	draw_exit(t_data *d)
+{
+	int l;
+	int c;
+
+	l = 0;
+	d->img.l = 0;
+	while (d->map[l])
+	{
+		d->img.c = 0;
+		c = 0;
+		while (d->map[l][c])
+		{
+			if (d->map[l][c] == 'E')
+				draw_square(d, &(d->exit));
+			else
+				d->img.c += SIZE;
+			c++;
+			d->img.l = l * SIZE;
+		}
+		l++;
+		d->img.l = SIZE * l;
+	}
+}
+
+void	draw_flower(t_data *d)
+{
+	int l;
+	int c;
+
+	l = 0;
+	d->img.l = 0;
+	while (d->map[l])
+	{
+		d->img.c = 0;
+		c = 0;
+		while (d->map[l][c])
+		{
+			if (d->map[l][c] == 'C')
+				draw_square(d, &(d->coin));
+			else
+				d->img.c += SIZE;
+			c++;
+			d->img.l = l * SIZE;
+		}
+		l++;
+		d->img.l = SIZE * l;
+	}
+}
+
 
 int	get_color(t_txt *img, int x, int y)
 {
