@@ -16,10 +16,10 @@ int	ft_keypress(int keysym, t_data *d)
 	return (0);
 }
 
-void move_forward(t_data *d)
+void	move_forward(t_data *d)
 {
 	if (check_position(d, d->x - 1, d->y))
-		return;
+		return ;
 	d->map[d->x][d->y] = '0';
 	d->x -= 1;
 	if (d->map[d->x - 1][d->y] != '1')
@@ -28,10 +28,10 @@ void move_forward(t_data *d)
 	write(1, "\r", 1);
 }
 
-void move_backward(t_data *d)
+void	move_backward(t_data *d)
 {
 	if (check_position(d, d->x + 1, d->y))
-		return;
+		return ;
 	d->map[d->x][d->y] = '0';
 	d->x += 1;
 	if (d->map[d->x - 1][d->y] != '1')
@@ -40,10 +40,10 @@ void move_backward(t_data *d)
 	write(1, "\r", 1);
 }
 
-void move_left(t_data *d)
+void	move_left(t_data *d)
 {
 	if (check_position(d, d->x, d->y - 1))
-		return;
+		return ;
 	d->map[d->x][d->y] = '0';
 	d->y -= 1;
 	if (d->map[d->x - 1][d->y] != '1')
@@ -52,10 +52,10 @@ void move_left(t_data *d)
 	write(1, "\r", 1);
 }
 
-void move_right(t_data *d)
+void	move_right(t_data *d)
 {
 	if (check_position(d, d->x, d->y + 1))
-		return;
+		return ;
 	d->map[d->x][d->y] = '0';
 	d->y += 1;
 	if (d->map[d->x - 1][d->y] != '1')

@@ -17,12 +17,12 @@ int	exit_clean(t_data *d)
 	if (d->map)
 		free_map(d);
 	exit(1);
-	return(1);
+	return (1);
 }
 
-int free_map(t_data *d)
+int	free_map(t_data *d)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (d->map[i])

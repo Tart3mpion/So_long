@@ -1,5 +1,9 @@
-  #ifndef SO_LONG_H
+#ifndef SO_LONG_H
 # define SO_LONG_H
+
+# ifndef BUFF_SIZE
+#  define BUFF_SIZE 32
+# endif
 
 # include "../libft/libft.h"
 # include <errno.h>
@@ -9,30 +13,29 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 
-#define PINK 0xFF660033
-#define GREEN 0x55225747
-#define BLUE 0xFF0E203E
-#define	ORANGE 0x55E1703E
-#define	YELLOW	0xFFFCAC00
-#define	BLACK 0xFF000000
-#define	SIZE 40
-
+# define PINK 0xFF660033
+# define GREEN 0x55225747
+# define BLUE 0xFF0E203E
+# define	ORANGE 0x55E1703E
+# define	YELLOW	0xFFFCAC00
+# define	BLACK 0xFF000000
+# define	SIZE 40
 
 /*KEYS*/
-#define W 119
-#define S 115
-#define A 97
-#define D 100
-#define ESC 65307
+# define W 119
+# define S 115
+# define A 97
+# define D 100
+# define ESC 65307
 
 /*TEXTURES*/
-#define PLAYER "textures/player.xpm"
-#define WALL "textures/wall.xpm"
-#define EXIT "textures/exit.xpm"
-#define COIN "textures/collectible.xpm"
-#define FLOOR "textures/floor.xpm"
+# define PLAYER "textures/player.xpm"
+# define WALL "textures/wall.xpm"
+# define EXIT "textures/exit.xpm"
+# define COIN "textures/collectible.xpm"
+# define FLOOR "textures/floor.xpm"
 
-typedef struct	s_img
+typedef struct s_img
 {
 	void	*img;
 	char	*data;
@@ -46,7 +49,7 @@ typedef struct	s_img
 	int		width;
 }				t_img;
 
-typedef struct	s_txt
+typedef struct s_txt
 {
 	void	*img;
 	char	*addr;
@@ -54,12 +57,12 @@ typedef struct	s_txt
 	int		line_length;
 	int		endian;
 	int		width;
-    int		height;
+	int		height;
 	int		x;
 	int		y;
 }				t_txt;
 
-typedef struct	s_data
+typedef struct s_data
 {
 	char	p;
 	char	c;
@@ -72,9 +75,7 @@ typedef struct	s_data
 	void	*mlx;
 	void	*mlx_win;
 	int		step;
-	//int		width;
-	//t_rgb   rgb;
-	t_img   img;
+	t_img	img;
 	t_txt	txt;
 	t_txt	wall;
 	t_txt	player;
@@ -99,13 +100,12 @@ int		check_row(t_data *d);
 
 /*init_images*/
 int		init_image(t_data *d);
-t_data	load_image(void *mlx, char *path);
+void	init_text(t_data *d);
 
 /*init_textures*/
-void 	init_text(t_data *d);
-void 	init_wall(t_data *d);
+void	init_wall(t_data *d);
 void	init_player(t_data *d);
-void	init_coin(t_data *d);
+void	init_collectible(t_data *d);
 void	init_exit(t_data *d);
 void	init_floor(t_data *d);
 
@@ -115,20 +115,16 @@ char	*stock_line(char *str, char **line);
 int		get_next_line(int fd, char **line);
 
 /*display*/
-void	print_map(t_data *d);
-//t_data	load_image(void *mlx, char *path);
 int		draw_square(t_data *data, t_txt *img);
-//void	background(t_img *img, int color);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	img_pix_put(t_img *img, int x, int y, int color);
-//void 	draw_decor(t_data *d);
-//void 	draw_elements(t_data *d);
-void	draw_floor(t_data *d);
-void	draw_wall(t_data *d);
+void	draw_decor(t_data *d);
+void	draw_player(t_data *d);
+void	draw_flower(t_data *d);
+void	draw_exit(t_data *d);
 int		draw_elements(t_data *d);
 int		get_color(t_txt *img, int x, int y);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
-
 
 /*actions*/
 void	find_player(t_data *d);
@@ -140,11 +136,12 @@ void	move_backward(t_data *d);
 void	move_forward(t_data *d);
 
 /*hooks*/
-int	ft_keyrelease(int keysym, t_data *data);
-int	ft_keypress(int keysym, t_data *d);
-int keyhook(int keycode, t_data *d);
+int		ft_keyrelease(int keysym, t_data *data);
+int		ft_keypress(int keysym, t_data *d);
+int		keyhook(int keycode, t_data *d);
 
 /*exit_clean*/
-int	exit_clean(t_data *data);
-int free_map(t_data *d);
+int		exit_clean(t_data *data);
+int		free_map(t_data *d);
+
 #endif

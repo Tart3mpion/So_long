@@ -1,26 +1,26 @@
 #include "so_long.h"
 
-int		is_rectangular(t_data *d)
+int	is_rectangular(t_data *d)
 {
-	int c;
-	int l;
+	int	c;
+	int	l;
 
 	l = 0;
 	while (d->map[l])
-    {
-    	c = 0;
-        while(d->map[l][c])
+	{
+		c = 0;
+		while (d->map[l][c])
 		{
 			c++;
 		}
 		if (c != d->columns)
 			return (1);
 		l++;
-    }
+	}
 	return (0);
 }
 
-int		is_closed(t_data *d)
+int	is_closed(t_data *d)
 {
 	if (check_row(d))
 		return (1);
@@ -29,10 +29,10 @@ int		is_closed(t_data *d)
 	return (0);
 }
 
-int check_row(t_data *d)
+int	check_row(t_data *d)
 {
-	int l;
-	int c;
+	int	l;
+	int	c;
 
 	l = 0;
 	c = 0;
@@ -53,16 +53,16 @@ int check_row(t_data *d)
 	return (0);
 }
 
-int check_column(t_data *d)
+int	check_column(t_data *d)
 {
-	int l;
-	int c;
+	int	l;
+	int	c;
 
 	l = 0;
 	c = 0;
 	while (d->map[l])
 	{
-		if (d->map[l][c] != '1')	
+		if (d->map[l][c] != '1')
 			return (1);
 		l++;
 	}
@@ -77,7 +77,7 @@ int check_column(t_data *d)
 	return (0);
 }
 
-void print_error(t_data *d, int error)
+void	print_error(t_data *d, int error)
 {
 	if (error == 1)
 		write(1, "Error\nInfos are missing", 24);
