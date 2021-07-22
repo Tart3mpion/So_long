@@ -27,8 +27,9 @@ int	check_position(t_data *d, int x, int y)
 			return (1);
 		else
 		{
-			write(1, "GG you ate it all", 17);
-			exit_clean(d);
+			draw_elements(d);
+			mlx_string_put(d->mlx, d->mlx_win, 200, 200, YELLOW, "CONGRATULATIONS");
+			exit_clean(d);//chercher comment ouvrir la porte ==>initialiser la textures porte ouverte
 		}
 	}
 	d->map[x][y] = 'P';

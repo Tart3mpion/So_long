@@ -22,10 +22,9 @@ void	move_forward(t_data *d)
 		return ;
 	d->map[d->x][d->y] = '0';
 	d->x -= 1;
-	if (d->map[d->x - 1][d->y] != '1')
-		d->step ++;
-	ft_putnbr_fd(d->step, 1);
-	write(1, "\r", 1);
+	d->step ++;
+	// ft_putnbr_fd(d->step, 1);
+	// write(1, "\r", 1);
 }
 
 void	move_backward(t_data *d)
@@ -34,10 +33,9 @@ void	move_backward(t_data *d)
 		return ;
 	d->map[d->x][d->y] = '0';
 	d->x += 1;
-	if (d->map[d->x - 1][d->y] != '1')
-		d->step ++;
-	ft_putnbr_fd(d->step, 1);
-	write(1, "\r", 1);
+	d->step ++;
+	// ft_putnbr_fd(d->step, 1);
+	// write(1, "\r", 1);
 }
 
 void	move_left(t_data *d)
@@ -46,10 +44,9 @@ void	move_left(t_data *d)
 		return ;
 	d->map[d->x][d->y] = '0';
 	d->y -= 1;
-	if (d->map[d->x - 1][d->y] != '1')
-		d->step ++;
-	ft_putnbr_fd(d->step, 1);
-	write(1, "\r", 1);
+	d->step ++;
+	// ft_putnbr_fd(d->step, 1);
+	// write(1, "\r", 1);
 }
 
 void	move_right(t_data *d)
@@ -58,8 +55,8 @@ void	move_right(t_data *d)
 		return ;
 	d->map[d->x][d->y] = '0';
 	d->y += 1;
-	if (d->map[d->x - 1][d->y] != '1')
-		d->step ++;
-	ft_putnbr_fd(d->step, 1);
-	write(1, "\r", 1);
+	d->step ++;
+	// ft_putnbr_fd(d->step, 1);
+	// write(1, "\r", 1);
+	//mlx_string_put(d->mlx, d->mlx_win, 20, 20, BLACK, ft_itoa(d->step));
 }

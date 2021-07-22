@@ -16,10 +16,10 @@
 # define PINK 0xFF660033
 # define GREEN 0x55225747
 # define BLUE 0xFF0E203E
-# define	ORANGE 0x55E1703E
-# define	YELLOW	0xFFFCAC00
-# define	BLACK 0xFF000000
-# define	SIZE 40
+# define ORANGE 0x55E1703E
+# define YELLOW	0xFFFCAC00
+# define BLACK 0xFF000000
+# define SIZE 40
 
 /*KEYS*/
 # define W 119

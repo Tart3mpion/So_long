@@ -8,6 +8,7 @@ int	draw_elements(t_data *d)
 	draw_flower(d);
 	draw_exit(d);
 	mlx_put_image_to_window(d->mlx, d->mlx_win, d->img.img, 0, 0);
+	mlx_string_put(d->mlx, d->mlx_win, 20, 20, PINK, ft_itoa(d->step));
 	return (1);
 }
 
