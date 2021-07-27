@@ -92,6 +92,6 @@ void	print_error(t_data *d, int error)
 	else
 		write(1, "Error\nThere is no file with that name", 37);
 	if (d->map)
-		free(d->map);
+		free_map(d);
 	exit(1);
 }

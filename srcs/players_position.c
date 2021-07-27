@@ -28,8 +28,7 @@ int	check_position(t_data *d, int x, int y)
 		else
 		{
 			draw_elements(d);
-			mlx_string_put(d->mlx, d->mlx_win, 200, 200, YELLOW, "CONGRATULATIONS");
-			exit_clean(d);//chercher comment ouvrir la porte ==>initialiser la textures porte ouverte
+			exit_clean(d);
 		}
 	}
 	d->map[x][y] = 'P';
