@@ -6,19 +6,15 @@
 /*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 10:25:12 by ldes-cou          #+#    #+#             */
-/*   Updated: 2021/07/01 14:21:15 by ldes-cou@st      ###   ########.fr       */
+/*   Updated: 2021/07/22 13:14:13 by ldes-cou@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-# ifndef BUFF_SIZE
-#  define BUFF_SIZE 32
-# endif
-
 char	*stock_str(char *buf, char *str)
 {
-	char *tmp;
+	char	*tmp;
 
 	if (!str)
 		str = ft_strdup(buf);
@@ -34,7 +30,7 @@ char	*stock_str(char *buf, char *str)
 char	*stock_line(char *str, char **line)
 {
 	char	*tmp;
-	size_t		i;
+	size_t	i;
 
 	i = 0;
 	while (str[i] && str[i] != '\n')
@@ -54,16 +50,18 @@ char	*stock_line(char *str, char **line)
 	return (str);
 }
 
-int		get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
-	static char *str;
+	static char	*str;
 	char		buf[BUFF_SIZE + 1];
-	size_t			i;
+	size_t		i;
 
-	if ((BUFF_SIZE < 1 || fd < 0 || !line || read(fd, buf, 0) < 0))
-		return (-1);
-	while ((i = read(fd, buf, BUFF_SIZE)) > 0)
+	i = 1;
+	while (i > 0)
 	{
+		i = read(fd, buf, BUFF_SIZE);
+		if ((BUFF_SIZE < 1 || fd < 0 || !line || i < 0))
+			return (-1);
 		buf[i] = '\0';
 		str = stock_str(buf, str);
 		if (ft_strchr(str, '\n'))

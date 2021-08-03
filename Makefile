@@ -3,8 +3,10 @@ NAME = so_long
 INCLUDES = includes
 
 
-SRCS = get_file.c get_next_line.c main.c display.c print_error.c \
-handle_keys.c exit_clean.c init_image.c movement.c init_text.c \
+SRCS = get_file.c get_next_line.c main.c draw_images.c print_error.c \
+	handle_keys.c exit_clean.c init_image.c init_text.c players_position.c \
+	get_pixels.c \
+
 
 
 OBJS =${addprefix srcs/,${SRCS:.c=.o}}
@@ -30,3 +32,5 @@ fclean: clean
 	rm $(NAME)
 
 re : fclean all
+
+.PHONY:all clean fclean re bonus

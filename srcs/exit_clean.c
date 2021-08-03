@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exit_clean.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ldes-cou@student.42.fr <ldes-cou>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/03 15:04:11 by ldes-cou@st       #+#    #+#             */
+/*   Updated: 2021/08/03 15:04:13 by ldes-cou@st      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 int	exit_clean(t_data *d)
@@ -17,12 +29,12 @@ int	exit_clean(t_data *d)
 	if (d->map)
 		free_map(d);
 	exit(1);
-	return(1);
+	return (1);
 }
 
-int free_map(t_data *d)
+int	free_map(t_data *d)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (d->map[i])
