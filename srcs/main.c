@@ -20,9 +20,12 @@ int	main(int ac, char **argv)
 	d.map = NULL;
 	if ((ac < 2) || (check_format(argv[1], ".ber")))
 		print_error(&d, 5);
+<<<<<<< HEAD
 	fd = open(argv[1], __O_DIRECTORY);
 	if (fd != -1)
 		print_error(&d, 7);
+=======
+>>>>>>> 958d94f5db2c32dbef886caa593828cb3b0fe28e
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		print_error(&d, 6);
