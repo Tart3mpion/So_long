@@ -26,10 +26,7 @@ int	init_image(t_data *d)
 	init_text(d);
 	draw_elements(d);
 	mlx_hook(d->mlx_win, 02, 1L << 0, ft_keypress, d);
-<<<<<<< HEAD
 	mlx_hook(d->mlx_win, 9, 1L << 21, draw_elements, d);
-=======
->>>>>>> 958d94f5db2c32dbef886caa593828cb3b0fe28e
 	mlx_hook(d->mlx_win, 17, 1L << 17, exit_clean, d);
 	mlx_loop_hook(d->mlx_win, draw_elements, d);
 	mlx_loop(d->mlx);

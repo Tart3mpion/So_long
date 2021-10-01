@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -11,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-=======
->>>>>>> 958d94f5db2c32dbef886caa593828cb3b0fe28e
 #include "so_long.h"
 
 int	draw_elements(t_data *d)
@@ -27,11 +24,8 @@ int	draw_elements(t_data *d)
 	draw_exit(d);
 	mlx_put_image_to_window(d->mlx, d->mlx_win, d->img.img, 0, 0);
 	mlx_string_put(d->mlx, d->mlx_win, 20, 20, PINK, print_step);
-<<<<<<< HEAD
 	ft_putnbr_fd(d->step, 0);
 	write(0, "\r", 1);
-=======
->>>>>>> 958d94f5db2c32dbef886caa593828cb3b0fe28e
 	free(print_step);
 	return (1);
 }
